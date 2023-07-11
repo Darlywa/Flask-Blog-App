@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hello World!</h1>
+   <img  src= "{{url_for('static', filename='/images/andrew-neel-cckf4TsHAuw-unsplash.jpg')}}" width=1100 height = 500>
+   <br/><br/>
+   <p id = "demo">This is Javascript.</p> 
+   <script src="{{url_for('static', filename='js/myfirstjs.js')}}"></script>
+   <p>This is my first flask website</p>
+    <p>And my name is {{username|safe}}!</p>
+    <strong>Pizza List:</strong><br/>
+    {% for pizza in favoritePizza%}
+    {{pizza}}<br/>
+    {% endfor %}
+
+    {{favoritePizza.2}}
+{% endblock %}

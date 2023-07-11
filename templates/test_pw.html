@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if email %}
+
+    <h3> Email: {{ email }} </h3
+    <br/>
+    <h3> Password: {{ password }} </h3>
+    <br/>
+    <h3> Records found in database:</h3>
+    <h4>Name: {{pw_to_check.name}}</h4><br/>
+    <h4>Email: {{pw_to_check.email}}</h4><br/>
+    <h4>Password: {{pw_to_check.password_hash}}</h4>
+    <br/>
+
+   <h4> Passed: {{ passed }}</h4>
+
+    <a href="{{ url_for('test_pw') }}" class="btn btn-success">Test Password</a>
+
+
+{% else %}
+    <h2> What's your email?</h2>
+    <br/>
+    <form method = "POST">
+        {{ form.hidden_tag() }}
+
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control") }}
+        <br/>
+
+          {{ form.password.label(class="form-label") }}
+        {{ form.password(class="form-control") }}
+        <br/>
+
+        {{ form.submit(class="btn btn-secondary") }}
+    </form>
+{% endif %}
+{% endblock %}

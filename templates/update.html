@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br/><br/>
+
+   {% for message in get_flashed_messages() %}
+   <div class="alert alert-warning alert-dismissible fade show" role="alert">
+       {{message}}
+       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+{% endfor %}
+
+{% if id  == current_user.id %}
+<h3> User Update:</h3>
+   
+        <form action = "/update/{{ name_to_update.id }}" method = "POST">
+                {{ form.hidden_tag() }}
+                {{ form.name.label(class = "form-label") }}
+                {{ form.name(class="form-control", value=name_to_update.name) }}
+                <br/>
+
+                 {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control", value=name_to_update.username) }}
+                <br/>
+
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control", value=name_to_update.email) }}
+                <br/>
+                {{ form.location.label(class="form-label") }}
+                {{ form.location(class="form-control", value=name_to_update.location) }}
+                <br/><br/>
+                {{ form.submit() }} 
+
+                <a href="{{url_for('delete', id=id)}}" class = "btn btn-danger btn-sm">Delete</a>
+        </form>
+        <br/><br/>
+{% else %}
+
+<h2>Access Denied!</h2>
+<p>Sorry, you do not have the permission to edit this profile...</p>
+   
+{% endif %}
+
+{% endblock %}
